@@ -1,0 +1,13 @@
+FC=C:\Rtools\mingw_64\bin\gfortran
+
+FCFLAGS = -O3 -c -fPIC 
+FLFLAGS = -shared -L C:/Program\ Files/R/R-3.5.1/bin/x64 -lR
+
+all: eval.dll
+
+
+eval.o: eval.f90
+	$(FC) $(FCFLAGS) $^
+
+eval.dll: eval.o
+	$(FC) $(FLFLAGS) -o $@ $^ librandomlib.a $(LDFLAGS)
